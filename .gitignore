@@ -1,6 +1,12 @@
+# IDE
 .vscode/
 .vs/
 
-Reports
+# Documentation
+Reports/**/*
+!Reports/*
+!Reports/**/*.pdf
+
+# Build outputs
 */bin/
 */obj/
