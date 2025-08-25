@@ -1,6 +1,6 @@
 # IDE
-.vscode/
-.vs/
+*/.vscode/
+*/.vs/
 
 # Documentation
 Reports/**/*
@@ -8,5 +8,8 @@ Reports/**/*
 !Reports/**/*.pdf
 
 # Build outputs
-*/bin/
-*/obj/
+*/*/bin/
+*/*/obj/
+*/*.sln
+*/*/*.csproj
+*/*/*.csproj.user
