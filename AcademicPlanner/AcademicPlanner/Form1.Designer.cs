@@ -64,6 +64,7 @@
             createNew_btn.Text = "Create New Profile";
             createNew_btn.TextAlign = ContentAlignment.BottomCenter;
             createNew_btn.UseVisualStyleBackColor = true;
+            createNew_btn.Click += createNew_btn_Click;
             // 
             // flowProfiles
             // 

@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 namespace AcademicPlanner
 {
     public partial class Form1 : Form
@@ -6,21 +8,48 @@ namespace AcademicPlanner
         {
             InitializeComponent();
 
-            // Example
-            AddProfileCard("Erdem", DateTime.Now.AddDays(-5));
-            
+            ListUser();
         }
 
         // User records folder name
-        private string dataFolder = "Users";
+        private string dataFolder = Path.Combine(Application.StartupPath, "Users");
+
+        private void ListUser()
+        {
+            flowProfiles.Controls.Clear();
+
+            if (!Directory.Exists(dataFolder))
+                return;
+
+            string profilesCsv = Path.Combine(dataFolder, "profiles.csv");
+            if (File.Exists(profilesCsv))
+            {
+                var lines = new List<string>(File.ReadAllLines(profilesCsv));
+
+                for (int i = 1; i < lines.Count; i++)
+                {
+                    AddProfileCard(lines[i].Split(";")[1]);
+                }
+            }
+        }
+
+        /*
+         *  Open new profile creation page
+         */
+        private void createNew_btn_Click(object sender, EventArgs e)
+        {
+            SignUp form2 = new SignUp(this);
+            form2.StartPosition = FormStartPosition.CenterScreen;
+            form2.Show();
+        }
 
         /*
          *  Creates new profile
          */
         public void Create_Profile(string name, string department, string startYear)
         {
-            if (!Directory.Exists(dataFolder))
-                Directory.CreateDirectory(dataFolder);
+            if (!Directory.Exists(Path.Combine(dataFolder, name)))
+                Directory.CreateDirectory(Path.Combine(dataFolder, name));
 
             // Initialize CSV files
             InitCsv("", "profiles.csv", "ProfileId;Name;Department;StartYear");
@@ -33,8 +62,10 @@ namespace AcademicPlanner
             int newProfileId = GetNextProfileId();
 
             // Create Profile
-            string profileLine = $"{newProfileId},{name},{department},{startYear}";
+            string profileLine = $"{newProfileId};{name};{department};{startYear}";
             File.AppendAllText(Path.Combine(dataFolder, "profiles.csv"), profileLine + Environment.NewLine);
+
+            ListUser();
         }
 
         private void Open_Profile()
@@ -67,7 +98,17 @@ namespace AcademicPlanner
             if (File.Exists(profilesCsv))
             {
                 var lines = new List<string>(File.ReadAllLines(profilesCsv));
-                lines.RemoveAll(line => line.Contains(profileName));
+                var header = lines.First(); 
+                lines.RemoveAt(0);
+
+                lines.RemoveAll(line =>
+                {
+                    var parts = line.Split(';');
+                    return parts.Length > 1 && parts[1] == profileName;
+                });
+
+                // tekrar yazarken baþlýðý en baþa ekle
+                lines.Insert(0, header);
                 File.WriteAllLines(profilesCsv, lines);
             }
         }
@@ -103,7 +144,7 @@ namespace AcademicPlanner
             return int.Parse(parts[0]) + 1;
         }
 
-        private void AddProfileCard(string profileName, DateTime createdAt)
+        private void AddProfileCard(string profileName)
         {
             // Panel
             Panel card = new Panel();
@@ -120,11 +161,11 @@ namespace AcademicPlanner
             lblName.AutoSize = true;
 
             // Created date
-            Label lblDate = new Label();
-            lblDate.Text = "Created: " + createdAt.ToShortDateString();
-            lblDate.Font = new Font("Segoe UI", 9);
-            lblDate.Location = new Point(10, 40);
-            lblDate.AutoSize = true;
+            // Label lblDate = new Label();
+            // lblDate.Text = "Created: " + createdAt.ToShortDateString();
+            // lblDate.Font = new Font("Segoe UI", 9);
+            // lblDate.Location = new Point(10, 40);
+            // lblDate.AutoSize = true;
 
             // Delete Button
             Button btnDelete = new Button();
@@ -134,7 +175,8 @@ namespace AcademicPlanner
             btnDelete.Size = new Size(30, 30);
             btnDelete.Location = new Point(200, 10);
             btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Click += (s, e) => {
+            btnDelete.Click += (s, e) =>
+            {
                 var result = MessageBox.Show($"Are you sure you want to delete the profile '{profileName}'? This action cannot be undone.",
                                               "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -149,7 +191,7 @@ namespace AcademicPlanner
 
             // Add everything to panel
             card.Controls.Add(lblName);
-            card.Controls.Add(lblDate);
+            // card.Controls.Add(lblDate);
             card.Controls.Add(btnDelete);
 
             // Add panel to Form
