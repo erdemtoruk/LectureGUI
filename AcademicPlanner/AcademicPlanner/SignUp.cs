@@ -23,18 +23,18 @@ namespace AcademicPlanner
 
         private void create_btn_Click(object sender, EventArgs e)
         {
-            string filePath;
-
-            if(name_textBox.Text == "")
-                filePath = "deneme";
-            else
-                filePath = name_textBox.Text;
-
-            /* Control */
+            if (name_textBox.Text == "" || department_textBox.Text == "" || year_textBox.Text == "")
+            {
+                // Error message
+                return;
+            }
 
 
-
+            // Create profile
             form1.Create_Profile(name_textBox.Text, department_textBox.Text, year_textBox.Text);
+
+            // Close creation form
+            this.Close();
         }
     }
 }

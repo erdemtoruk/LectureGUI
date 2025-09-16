@@ -28,38 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel = new TableLayoutPanel();
             ıconButton6 = new FontAwesome.Sharp.IconButton();
             ıconButton5 = new FontAwesome.Sharp.IconButton();
             ıconButton4 = new FontAwesome.Sharp.IconButton();
             ıconButton3 = new FontAwesome.Sharp.IconButton();
             ıconButton2 = new FontAwesome.Sharp.IconButton();
             MainMenu_btn = new FontAwesome.Sharp.IconButton();
-            tableLayoutPanel1.SuspendLayout();
+            page_panel = new Panel();
+            tableLayoutPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel
             // 
-            tableLayoutPanel1.ColumnCount = 6;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.Controls.Add(ıconButton6, 5, 0);
-            tableLayoutPanel1.Controls.Add(ıconButton5, 4, 0);
-            tableLayoutPanel1.Controls.Add(ıconButton4, 3, 0);
-            tableLayoutPanel1.Controls.Add(ıconButton3, 2, 0);
-            tableLayoutPanel1.Controls.Add(ıconButton2, 1, 0);
-            tableLayoutPanel1.Controls.Add(MainMenu_btn, 0, 0);
-            tableLayoutPanel1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1114, 56);
-            tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel.ColumnCount = 6;
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.6666679F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.6666641F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.6666641F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.6666641F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.6666641F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.6666641F));
+            tableLayoutPanel.Controls.Add(ıconButton6, 5, 0);
+            tableLayoutPanel.Controls.Add(ıconButton5, 4, 0);
+            tableLayoutPanel.Controls.Add(ıconButton4, 3, 0);
+            tableLayoutPanel.Controls.Add(ıconButton3, 2, 0);
+            tableLayoutPanel.Controls.Add(ıconButton2, 1, 0);
+            tableLayoutPanel.Controls.Add(MainMenu_btn, 0, 0);
+            tableLayoutPanel.Dock = DockStyle.Top;
+            tableLayoutPanel.Location = new Point(0, 0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 1;
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new Size(1114, 56);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // ıconButton6
             // 
@@ -143,30 +147,41 @@
             MainMenu_btn.UseVisualStyleBackColor = true;
             MainMenu_btn.Click += MainMenu_btn_Click;
             // 
+            // page_panel
+            // 
+            page_panel.Dock = DockStyle.Fill;
+            page_panel.Location = new Point(0, 56);
+            page_panel.Name = "page_panel";
+            page_panel.Size = new Size(1114, 511);
+            page_panel.TabIndex = 1;
+            // 
             // MainDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(2, 52, 64);
             ClientSize = new Size(1114, 567);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(page_panel);
+            Controls.Add(tableLayoutPanel);
             Name = "MainDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Main Dashboard";
+            FormClosed += MainDashboard_FormClosed;
             Load += MainDashboard_Load;
             Resize += MainDashboard_Resize;
-            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel;
         private FontAwesome.Sharp.IconButton ıconButton6;
         private FontAwesome.Sharp.IconButton ıconButton5;
         private FontAwesome.Sharp.IconButton ıconButton4;
         private FontAwesome.Sharp.IconButton ıconButton3;
         private FontAwesome.Sharp.IconButton ıconButton2;
         private FontAwesome.Sharp.IconButton MainMenu_btn;
+        private Panel page_panel;
     }
 }

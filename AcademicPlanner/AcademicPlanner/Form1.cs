@@ -12,7 +12,7 @@ namespace AcademicPlanner
         }
 
         // User records folder name
-        private string dataFolder = Path.Combine(Application.StartupPath, "Users");
+        public string dataFolder = Path.Combine(Application.StartupPath, "Users");
 
         private void ListUser()
         {
@@ -48,8 +48,14 @@ namespace AcademicPlanner
          */
         public void Create_Profile(string name, string department, string startYear)
         {
-            if (!Directory.Exists(Path.Combine(dataFolder, name)))
-                Directory.CreateDirectory(Path.Combine(dataFolder, name));
+            if (Directory.Exists(Path.Combine(dataFolder, name)))
+            {
+                // This name already taken error message
+                return;
+            }   
+            
+            // Create folder for new profile
+            Directory.CreateDirectory(Path.Combine(dataFolder, name));
 
             // Initialize CSV files
             InitCsv("", "profiles.csv", "ProfileId;Name;Department;StartYear");
@@ -58,23 +64,37 @@ namespace AcademicPlanner
             InitCsv(name, "internships.csv", "InternshipName;RequiredDays;CompletedDays;Status");
             InitCsv(name, "settings.csv", "Theme;LastOpenedPage");
 
-            // New Profile ID
+            // New profile ID
             int newProfileId = GetNextProfileId();
 
-            // Create Profile
+            // Add to profile.csv
             string profileLine = $"{newProfileId};{name};{department};{startYear}";
             File.AppendAllText(Path.Combine(dataFolder, "profiles.csv"), profileLine + Environment.NewLine);
 
             ListUser();
         }
 
-        private void Open_Profile()
+        /*
+         *  Open profile
+         */ 
+        private void Open_Profile(string profileName)
         {
+            // Delete profile folder
+            string profileFolder = Path.Combine(dataFolder, profileName);
+            if (Directory.Exists(profileFolder))
+            {
+                MainDashboard MainMenu = new MainDashboard(this, profileName);
 
+                MainMenu.StartPosition = FormStartPosition.CenterScreen;
+
+                // Show main menu
+                this.Hide();
+                MainMenu.Show();
+            }
         }
 
         /*
-         *  Delete Profile informations
+         *  Delete profile informations
          */
         private void Delete_Profile(string profileName)
         {
@@ -84,7 +104,7 @@ namespace AcademicPlanner
             {
                 try
                 {
-                    Directory.Delete(profileFolder, true);
+                    Directory.Delete(profileFolder, true);  // Delete subfolders
                 }
                 catch (Exception ex)
                 {
@@ -107,7 +127,6 @@ namespace AcademicPlanner
                     return parts.Length > 1 && parts[1] == profileName;
                 });
 
-                // tekrar yazarken baþlýðý en baþa ekle
                 lines.Insert(0, header);
                 File.WriteAllLines(profilesCsv, lines);
             }
@@ -137,7 +156,7 @@ namespace AcademicPlanner
                 return 1;
 
             string[] lines = File.ReadAllLines(profilePath);
-            if (lines.Length <= 1) return 1; // sadece baþlýk varsa
+            if (lines.Length <= 1) return 1;
 
             string lastLine = lines[lines.Length - 1];
             string[] parts = lastLine.Split(';');
@@ -149,7 +168,7 @@ namespace AcademicPlanner
             // Panel
             Panel card = new Panel();
             card.Size = new Size(250, 80);
-            card.BackColor = Color.LightGray;
+            card.BackColor = Color.FromArgb(100,200,150);
             card.Margin = new Padding(10);
             card.BorderStyle = BorderStyle.FixedSingle;
 
@@ -187,7 +206,7 @@ namespace AcademicPlanner
             };
 
             // Open Profile
-            card.Click += (s, e) => Open_Profile();
+            card.Click += (s, e) => Open_Profile(profileName);
 
             // Add everything to panel
             card.Controls.Add(lblName);

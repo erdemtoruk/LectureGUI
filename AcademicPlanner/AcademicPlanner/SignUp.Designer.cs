@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             fill_panel = new Panel();
+            create_btn = new FontAwesome.Sharp.IconButton();
             year_textBox = new TextBox();
             department_textBox = new TextBox();
             name_textBox = new TextBox();
-            create_btn = new FontAwesome.Sharp.IconButton();
             fill_panel.SuspendLayout();
             SuspendLayout();
             // 
@@ -47,6 +47,19 @@
             fill_panel.Name = "fill_panel";
             fill_panel.Size = new Size(582, 453);
             fill_panel.TabIndex = 0;
+            // 
+            // create_btn
+            // 
+            create_btn.IconChar = FontAwesome.Sharp.IconChar.None;
+            create_btn.IconColor = Color.Black;
+            create_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            create_btn.Location = new Point(210, 246);
+            create_btn.Name = "create_btn";
+            create_btn.Size = new Size(125, 29);
+            create_btn.TabIndex = 4;
+            create_btn.Text = "Create";
+            create_btn.UseVisualStyleBackColor = true;
+            create_btn.Click += create_btn_Click;
             // 
             // year_textBox
             // 
@@ -69,23 +82,10 @@
             name_textBox.Size = new Size(125, 27);
             name_textBox.TabIndex = 0;
             // 
-            // create_btn
-            // 
-            create_btn.IconChar = FontAwesome.Sharp.IconChar.None;
-            create_btn.IconColor = Color.Black;
-            create_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            create_btn.Location = new Point(210, 246);
-            create_btn.Name = "create_btn";
-            create_btn.Size = new Size(125, 29);
-            create_btn.TabIndex = 4;
-            create_btn.Text = "Create";
-            create_btn.UseVisualStyleBackColor = true;
-            create_btn.Click += create_btn_Click;
-            // 
             // SignUp
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.FromArgb(2, 52, 64);
+            BackColor = Color.FromArgb(124, 154, 146);
             ClientSize = new Size(582, 453);
             Controls.Add(fill_panel);
             FormBorderStyle = FormBorderStyle.FixedDialog;
