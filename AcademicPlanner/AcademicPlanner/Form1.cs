@@ -176,7 +176,7 @@ namespace AcademicPlanner
             Label lblName = new Label();
             lblName.Text = profileName;
             lblName.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            lblName.Location = new Point(10, 10);
+            lblName.Location = new Point(15, 15);
             lblName.AutoSize = true;
 
             // Created date
@@ -189,11 +189,13 @@ namespace AcademicPlanner
             // Delete Button
             Button btnDelete = new Button();
             btnDelete.Text = "X";
+            btnDelete.Font = new Font("Segoe UI", 8, FontStyle.Bold);
             btnDelete.ForeColor = Color.White;
-            btnDelete.BackColor = Color.Red;
+            btnDelete.BackColor = Color.Transparent;
             btnDelete.Size = new Size(30, 30);
-            btnDelete.Location = new Point(200, 10);
+            btnDelete.Location = new Point(210, 5);
             btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.FlatAppearance.BorderSize = 0;
             btnDelete.Click += (s, e) =>
             {
                 var result = MessageBox.Show($"Are you sure you want to delete the profile '{profileName}'? This action cannot be undone.",

@@ -79,7 +79,7 @@
             // Form1
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.FromArgb(2, 52, 64);
+            BackColor = Color.FromArgb(25, 50, 34);
             ClientSize = new Size(982, 553);
             Controls.Add(fill_panel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
