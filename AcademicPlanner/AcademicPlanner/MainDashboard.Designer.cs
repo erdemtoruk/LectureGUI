@@ -34,7 +34,7 @@
             ıconButton4 = new FontAwesome.Sharp.IconButton();
             ıconButton3 = new FontAwesome.Sharp.IconButton();
             ıconButton2 = new FontAwesome.Sharp.IconButton();
-            MainMenu_btn = new FontAwesome.Sharp.IconButton();
+            Home_btn = new FontAwesome.Sharp.IconButton();
             page_panel = new Panel();
             tableLayoutPanel.SuspendLayout();
             SuspendLayout();
@@ -53,7 +53,7 @@
             tableLayoutPanel.Controls.Add(ıconButton4, 3, 0);
             tableLayoutPanel.Controls.Add(ıconButton3, 2, 0);
             tableLayoutPanel.Controls.Add(ıconButton2, 1, 0);
-            tableLayoutPanel.Controls.Add(MainMenu_btn, 0, 0);
+            tableLayoutPanel.Controls.Add(Home_btn, 0, 0);
             tableLayoutPanel.Dock = DockStyle.Top;
             tableLayoutPanel.Location = new Point(0, 0);
             tableLayoutPanel.Name = "tableLayoutPanel";
@@ -132,20 +132,20 @@
             ıconButton2.Text = ".. Page";
             ıconButton2.UseVisualStyleBackColor = true;
             // 
-            // MainMenu_btn
+            // Home_btn
             // 
-            MainMenu_btn.Dock = DockStyle.Fill;
-            MainMenu_btn.IconChar = FontAwesome.Sharp.IconChar.HomeUser;
-            MainMenu_btn.IconColor = Color.Black;
-            MainMenu_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            MainMenu_btn.ImageAlign = ContentAlignment.MiddleLeft;
-            MainMenu_btn.Location = new Point(3, 3);
-            MainMenu_btn.Name = "MainMenu_btn";
-            MainMenu_btn.Size = new Size(179, 50);
-            MainMenu_btn.TabIndex = 0;
-            MainMenu_btn.Text = "Main Menu";
-            MainMenu_btn.UseVisualStyleBackColor = true;
-            MainMenu_btn.Click += MainMenu_btn_Click;
+            Home_btn.Dock = DockStyle.Fill;
+            Home_btn.IconChar = FontAwesome.Sharp.IconChar.HomeUser;
+            Home_btn.IconColor = Color.Black;
+            Home_btn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            Home_btn.ImageAlign = ContentAlignment.MiddleLeft;
+            Home_btn.Location = new Point(3, 3);
+            Home_btn.Name = "Home_btn";
+            Home_btn.Size = new Size(179, 50);
+            Home_btn.TabIndex = 0;
+            Home_btn.Text = "Home";
+            Home_btn.UseVisualStyleBackColor = true;
+            Home_btn.Click += Home_btn_Click;
             // 
             // page_panel
             // 
@@ -181,7 +181,7 @@
         private FontAwesome.Sharp.IconButton ıconButton4;
         private FontAwesome.Sharp.IconButton ıconButton3;
         private FontAwesome.Sharp.IconButton ıconButton2;
-        private FontAwesome.Sharp.IconButton MainMenu_btn;
+        private FontAwesome.Sharp.IconButton Home_btn;
         private Panel page_panel;
     }
 }

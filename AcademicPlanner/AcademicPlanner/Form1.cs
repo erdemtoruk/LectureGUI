@@ -12,7 +12,7 @@ namespace AcademicPlanner
         }
 
         // User records folder name
-        public string dataFolder = Path.Combine(Application.StartupPath, "Users");
+        public static string dataFolder = Path.Combine(Application.StartupPath, "Users");
 
         private void ListUser()
         {
@@ -58,7 +58,7 @@ namespace AcademicPlanner
             Directory.CreateDirectory(Path.Combine(dataFolder, name));
 
             // Initialize CSV files
-            InitCsv("", "profiles.csv", "ProfileId;Name;Department;StartYear");
+            InitCsv("", "profiles.csv", "ProfileId;Name;Department;Year");
             InitCsv(name, "courses.csv", "CourseCode;CourseName;Credit;Semester;Grade;Status");
             InitCsv(name, "prerequisites.csv", "CourseCode;PrerequisiteCode");
             InitCsv(name, "internships.csv", "InternshipName;RequiredDays;CompletedDays;Status");

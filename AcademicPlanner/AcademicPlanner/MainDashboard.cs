@@ -29,7 +29,7 @@ namespace AcademicPlanner
         /****************************************************************** Find User *****************************************************************************/
         private int Find_User()
         {
-            string profilesCsv = Path.Combine(form1.dataFolder, "profiles.csv");
+            string profilesCsv = Path.Combine(Form1.dataFolder, "profiles.csv");
             if (File.Exists(profilesCsv))
             {
                 var lines = new List<string>(File.ReadAllLines(profilesCsv));
@@ -54,17 +54,14 @@ namespace AcademicPlanner
         private void MainDashboard_Load(object sender, EventArgs e)
         {
             Size_Change();
+            Home_btn_Click(this, EventArgs.Empty);
         }
 
         private void MainDashboard_Resize(object sender, EventArgs e)
         {
             Size_Change();
         }
-        /***************************************************************** Form Change ******************************************************************************/
-        private void MainMenu_btn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        /***************************************************************** Form Close ******************************************************************************/
 
         private void MainDashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -89,6 +86,14 @@ namespace AcademicPlanner
             page_panel.Tag = childform;
             childform.BringToFront();
             currentChildForm.Show();            // Show child form
+        }
+
+        /*
+         *  Open home page
+         */
+        private void Home_btn_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Home(profileIndex));
         }
 
 
